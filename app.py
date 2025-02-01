@@ -8,11 +8,11 @@ import re
 class GrammarCheckerApp(QMainWindow):
 	def __init__(self):
 		super().__init__()
-		self.setWindowTitle("Advanced Grammar Checker")
-		self.setMinimumSize(1200, 800)
+		self.setWindowTitle("Real-time Grammar Checker")
+		self.setMinimumSize(800, 600)
 		
-		# Initialize the language tool with all rules enabled
-		self.tool = language_tool_python.LanguageTool('en-US', config={'maxSpellingSuggestions': 10})
+		# Initialize the language tool
+		self.tool = language_tool_python.LanguageTool('en-US')
 		
 		# Enhanced punctuation rules
 		self.punctuation_rules = {
@@ -96,20 +96,8 @@ class GrammarCheckerApp(QMainWindow):
 		# Connect text change to timer
 		self.input_text.textChanged.connect(self.start_timer)
 		
-		# Apply styling
-		# Add toggle_stay_on_top method
-		def toggle_stay_on_top(self):
-			"""Toggle the stay-on-top state of the window"""
-			self.stay_on_top = not self.stay_on_top
-			if self.stay_on_top:
-				self.setWindowFlags(self.windowFlags() | Qt.WindowType.WindowStaysOnTopHint)
-				self.stay_on_top_button.setText("📌 Stay on Top: On")
-			else:
-				self.setWindowFlags(self.windowFlags() & ~Qt.WindowType.WindowStaysOnTopHint)
-				self.stay_on_top_button.setText("📌 Stay on Top: Off")
-			self.show()  # Need to show the window again after changing flags
-		
 		self.setStyleSheet("""
+
 			QMainWindow {
 				background-color: #f5f5f5;
 			}
@@ -135,6 +123,17 @@ class GrammarCheckerApp(QMainWindow):
 			}
 		""")
 	
+	def toggle_stay_on_top(self):
+		"""Toggle the stay-on-top state of the window"""
+		self.stay_on_top = not self.stay_on_top
+		if self.stay_on_top:
+			self.setWindowFlags(self.windowFlags() | Qt.WindowType.WindowStaysOnTopHint)
+			self.stay_on_top_button.setText("📌 Stay on Top: On")
+		else:
+			self.setWindowFlags(self.windowFlags() & ~Qt.WindowType.WindowStaysOnTopHint)
+			self.stay_on_top_button.setText("📌 Stay on Top: Off")
+		self.show()  # Need to show the window again after changing flags
+
 	def start_timer(self):
 		"""Start timer with shorter delay for more responsive corrections"""
 		self.timer.start(300)  # Reduced to 300ms for more immediate feedback
