@@ -11,7 +11,7 @@ class GrammarCheckerApp(QMainWindow):
 		super().__init__()
 		self.setWindowTitle("Real-time Grammar Checker")
 		# Set a smaller minimum size
-		self.setMinimumSize(400, 300)
+		self.setMinimumSize(300, 200)  # Smaller minimum size
 		# Enable resizing
 		self.setWindowFlags(self.windowFlags() | Qt.WindowType.WindowMaximizeButtonHint)
 		self.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
@@ -40,12 +40,12 @@ class GrammarCheckerApp(QMainWindow):
 		main_widget = QWidget()
 		self.setCentralWidget(main_widget)
 		main_layout = QVBoxLayout(main_widget)
-		main_layout.setContentsMargins(5, 5, 5, 5)  # Reduce margins for smaller window
-		main_layout.setSpacing(5)  # Reduce spacing between elements
+		main_layout.setContentsMargins(2, 2, 2, 2)  # Smaller margins
+		main_layout.setSpacing(2)  # Smaller spacing between elements
 		
 		# Create toolbar layout with both buttons
 		toolbar_layout = QHBoxLayout()
-		toolbar_layout.setSpacing(5)
+		toolbar_layout.setSpacing(2)
 		
 		# Add stay-on-top toggle button
 		self.stay_on_top_button = QPushButton("📌 Stay on Top: Off")
@@ -56,8 +56,8 @@ class GrammarCheckerApp(QMainWindow):
 				background-color: #f0f0f0;
 				border: 1px solid #ccc;
 				border-radius: 4px;
-				padding: 5px 10px;
-				font-size: 11px;
+				padding: 3px 6px;
+				font-size: 9px;
 			}
 			QPushButton:checked {
 				background-color: #0078d4;
@@ -74,9 +74,9 @@ class GrammarCheckerApp(QMainWindow):
 				background-color: #0078d4;
 				color: white;
 				border: none;
-				padding: 5px 10px;
-				border-radius: 4px;
-				font-size: 11px;
+				padding: 3px 6px;
+				border-radius: 3px;
+				font-size: 9px;
 			}
 			QPushButton:hover {
 				background-color: #005a9e;
@@ -145,9 +145,9 @@ class GrammarCheckerApp(QMainWindow):
 			QTextEdit {
 				background-color: white;
 				border: 1px solid #666;
-				border-radius: 3px;
-				padding: 4px;
-				font-size: 12px;
+				border-radius: 2px;
+				padding: 2px;
+				font-size: 10px;
 				color: #333;
 				selection-background-color: #0078d4;
 				selection-color: white;
@@ -156,14 +156,18 @@ class GrammarCheckerApp(QMainWindow):
 				border-color: #0078d4;
 			}
 			QLabel {
-				font-size: 11px;
+				font-size: 9px;
 				font-weight: bold;
 				color: #333;
-				margin-bottom: 2px;
+				margin-bottom: 1px;
 			}
 			QTextEdit[readOnly="true"] {
 				background-color: #f8f8f8;
 				border-color: #999;
+			}
+			QPushButton {
+				font-size: 9px !important;
+				padding: 3px 6px !important;
 			}
 		""")
 	
